@@ -47,6 +47,7 @@ export async function POST(req: Request) {
             if (name === "") return new Response("No name", { status: 400 })
 
             if (event.type === "user.created") {
+                console.log("insert Hi")
                 const user = await insertUser({
                     clerkUserId: event.data.id,
                     email,
@@ -57,6 +58,7 @@ export async function POST(req: Request) {
 
                 await syncClerkUserMetadata(user)
             } else {
+                console.log("Hi")
                 await upadateUser(
                     event.data.id,
                     {
